@@ -2,9 +2,9 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
+using VcsWebdriver.Pages;
 
-namespace VcsWebdriver
+namespace VcsWebdriver.Tests
 {
     public class BasicTestForm
     {
@@ -22,6 +22,16 @@ namespace VcsWebdriver
             _chromeDriver.FindElement(By.XPath("//*[@id='at-cv-lightbox-button-holder']/a[2]")).Click();
         }
 
+        [Test]
+        public static void EnterMessageTestasWithPageObject()
+        {
+            string testMessage = "mano pranesimas";
+
+            var page = new BasicFirstFormDemoPage(_chromeDriver);
+            page
+                .EnterMessage(testMessage).PushShowMessageButton().AssertShownMessage(testMessage);
+        }
+
         [TestCase("testMessage", TestName = "Ivedame reiksme i message lauka, ir spaudziame 'Show Message'")]
         public static void EnterMessageTest(string messageText)
         {
@@ -34,7 +44,17 @@ namespace VcsWebdriver
 
             Assert.AreEqual(messageText, pranesimoParodymas.Text, "Tekstas neatitinka to ka ivedziau");
         }
-        
+
+        [TestCase(2, 2, TestName = "Dvieju teigiamu skaiciu suma su PAGE OBJECT")]
+        [TestCase(-5, 3, TestName = "Vieno teigiamo, kito neigiamo skaiciu suma SU PAGE OBJECT")]
+        public static void TestSumWithPageObject(int a, int b)
+        {
+            var page = new BasicFirstFormDemoPage(_chromeDriver);
+            page.EnterNumbers(a, b);
+            page.ClickSumosMygtuka();
+            page.PatikrintiRezultata((a+b).ToString());
+        }
+
         [TestCase(2,2, TestName = "Dvieju teigiamu skaiciu suma")]
         [TestCase(-5, 3, TestName = "Vieno teigiamo, kito neigiamo skaiciu suma")]
         public static void TestSum(int a, int b)

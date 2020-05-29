@@ -55,16 +55,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasicCheckBoxDemo.cs" />
-    <Compile Include="Vartutechnika.cs" />
-    <Compile Include="BasicTestForm.cs" />
-    <Compile Include="TestsDemo.cs" />
+    <Compile Include="Pages\PageBase.cs" />
+    <Compile Include="Tests\BasicCheckBoxDemo.cs" />
+    <Compile Include="Pages\BasicFirstFormDemoPage.cs" />
+    <Compile Include="Pages\VartuTechnikaPage.cs" />
+    <Compile Include="Tests\Vartutechnika.cs" />
+    <Compile Include="Tests\BasicTestForm.cs" />
+    <Compile Include="Tests\TestsDemo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebDriverDemo.cs" />
+    <Compile Include="Tests\VartuTechnikaPageObject.cs" />
+    <Compile Include="Tests\WebDriverDemo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

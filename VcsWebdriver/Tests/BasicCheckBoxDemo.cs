@@ -3,7 +3,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace VcsWebdriver
+namespace VcsWebdriver.Tests
 {
     public class BasicCheckBoxDemo
     {

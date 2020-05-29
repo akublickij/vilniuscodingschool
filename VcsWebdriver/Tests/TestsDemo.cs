@@ -2,13 +2,13 @@
 using System.Threading;
 using NUnit.Framework;
 
-namespace VcsWebdriver
+namespace VcsWebdriver.Tests
 {
     public class TestsDemo
     {
 
         [Test]
-        public static void TestExample()
+        public static void TestExample()    
         {
             // 1 Preconditions
             // 2 Steps
