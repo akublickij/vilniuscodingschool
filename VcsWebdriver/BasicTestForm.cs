@@ -10,7 +10,7 @@ namespace VcsWebdriver
     {
         private static IWebDriver _chromeDriver;
 
-        // automatiskai pasileidzia 1 karta PRIES visus testus
+        // automatiskai pasileidzia 1 karta PRIES visus testus NEW !!!!
         [OneTimeSetUp]
         public static void SetUpChrome()
         {
