@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading;
 using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 
 namespace VcsWebdriver.Tests
 {
@@ -53,7 +55,17 @@ namespace VcsWebdriver.Tests
         {
             Thread.Sleep(1000);
             Assert.Pass("Palaukiau 5 sek ir pazaliavau");
+
         }
+
+        //public static void Actions()
+        //{
+        //    var builder = new Actions();
+        //    builder.KeyDown(Keys.Control);
+        //    builder.Click();
+        //    builder.KeyUp(Keys.Control);
+        //    builder.Build().Perform();
+        //}
 
     }
 }

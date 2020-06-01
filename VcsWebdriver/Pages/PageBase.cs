@@ -11,7 +11,6 @@ namespace VcsWebdriver.Pages
             Driver = webdriver;
         }
 
-
         public void CloseBrowser()
         {
             Driver.Quit();
