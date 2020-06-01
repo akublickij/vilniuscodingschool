@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
+using VcsWebdriver.Drivers;
 using VcsWebdriver.Pages;
 
 namespace VcsWebdriver.Tests
@@ -16,9 +13,7 @@ namespace VcsWebdriver.Tests
         [OneTimeSetUp]
         public static void SetUpChrome()
         {
-            var driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            var driver = CustomDrivers.GetChromeDriver();
 
             _senukaiLoginPage = new SenukaiLoginPage(driver);
         }

@@ -7,24 +7,29 @@ namespace VcsWebdriver.Pages
 {
     class SelectDemoPage : PageBase
     {
+        // elementai
         private static SelectElement DaySelectList => new SelectElement(Driver.FindElement(By.Id("select-demo")));
         private static IWebElement SelectedDayLabel => Driver.FindElement(By.ClassName("selected-value"));
 
-
+        // konstruktorius
         public SelectDemoPage(IWebDriver webdriver) : base(webdriver)
         {
             Driver.Url = "https://www.seleniumeasy.com/test/basic-select-dropdown-demo.html";
         }
 
-        public SelectDemoPage SelectByValue(DayOfWeek dayOfWeek)
+        // metodai- veiksmai
+
+        public SelectDemoPage SelectDay(DayOfWeek selectOption)
         {
-            DaySelectList.SelectByValue(dayOfWeek.ToString());
+            DaySelectList.SelectByValue(selectOption.ToString());
             return this;
         }
+
 
         public SelectDemoPage AssertSelectedDay(DayOfWeek expectedDay)
         {
             Assert.AreEqual($"Day selected :- {expectedDay}", SelectedDayLabel.Text);
+
             return this;
         }
     }

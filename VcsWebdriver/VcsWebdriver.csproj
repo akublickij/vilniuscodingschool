@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Drivers\CustomDrivers.cs" />
     <Compile Include="Pages\SelectDemoPage.cs" />
     <Compile Include="Pages\MultipleCheckBoxPage.cs" />
     <Compile Include="Pages\PageBase.cs" />

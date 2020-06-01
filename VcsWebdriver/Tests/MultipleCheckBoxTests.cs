@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
+using VcsWebdriver.Drivers;
 using VcsWebdriver.Pages;
 
 namespace VcsWebdriver.Tests
@@ -12,29 +13,32 @@ namespace VcsWebdriver.Tests
         [OneTimeSetUp]
         public static void SetUpChrome()
         {
-            var driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-
+            var driver = CustomDrivers.GetChromeDriver();
             _page = new MultipleCheckBoxPage(driver);
         }
 
         [Test]
-        public static void TestFirstCheckBoxExactWait()
+        public static void SingleCheckBoxTest()
         {
             _page
                 .CheckSingleCheckBox()
-                .AssertSingleCheckBoxSuccessMessage()
-                .UncheckSingleCheckBox();
+                .AssertSingleCheckBoxDemoSuccessMessage()
+                .UnCheckSingleCheckBox();
         }
 
         [Test]
-        public static void TestFirstCheckBoxExplicitWait()
+        public static void MultipleCheckBoxTest()
+        {
+            _page.CheckAllMultipleCheckBoxes().AssertButtonName("Uncheck All");
+        }
+
+        [Test]
+        public static void UncheckMultipleCheckBoxesTest()
         {
             _page
-                .CheckSingleCheckBox()
-                .AssertSingleCheckBoxSuccessMessageWithWait()
-                .UncheckSingleCheckBox();
+                .CheckAllMultipleCheckBoxes()
+                .ClickGroupButton()
+                .AssertMultipleCheckBoxesUnchecked();
         }
 
         [OneTimeTearDown]

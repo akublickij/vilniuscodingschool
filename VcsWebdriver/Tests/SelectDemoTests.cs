@@ -1,6 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
-using OpenQA.Selenium.Chrome;
+using VcsWebdriver.Drivers;
 using VcsWebdriver.Pages;
 
 namespace VcsWebdriver.Tests
@@ -12,10 +12,7 @@ namespace VcsWebdriver.Tests
         [OneTimeSetUp]
         public static void SetUpChrome()
         {
-            var driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-
+            var driver = CustomDrivers.GetChromeDriver();
             _demoPage = new SelectDemoPage(driver);
         }
 
@@ -24,10 +21,7 @@ namespace VcsWebdriver.Tests
         [TestCase(DayOfWeek.Friday)]
         public static void TestFirstCheckBoxExactWait(DayOfWeek testDay)
         {
-            _demoPage
-                .SelectByValue(testDay)
-                .AssertSelectedDay(testDay);
-
+            _demoPage.SelectDay(testDay).AssertSelectedDay(testDay);
         }
 
         [OneTimeTearDown]

@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace VcsWebdriver.Pages
 {
@@ -14,6 +16,12 @@ namespace VcsWebdriver.Pages
         public void CloseBrowser()
         {
             Driver.Quit();
+        }
+
+        public WebDriverWait GetWait(int seconds = 5)
+        {
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(seconds));
+            return wait;
         }
     }
 }
