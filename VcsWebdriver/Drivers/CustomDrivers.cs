@@ -10,27 +10,27 @@ namespace VcsWebdriver.Drivers
     {
         public static IWebDriver GetChromeDriver()
         {
-            return GetDriver("chrome");
+            return GetDriver(Browser.Chrome);
         }
 
         public static IWebDriver GetFireFoxDriver()
         {
-            return GetDriver("firefox");
+            return GetDriver(Browser.FireFox);
         }
 
-        private static IWebDriver GetDriver(string browserName)
+        private static IWebDriver GetDriver(Browser browserName)
         {
             IWebDriver webDriver = null;
 
             switch (browserName)
             {
-                case "firefox":
+                case Browser.FireFox:
                     webDriver = new FirefoxDriver();
                     break;
-                case "chrome":
+                case Browser.Chrome:
                     webDriver = new ChromeDriver();
                     break;
-                case "explorer":
+                case Browser.Explorer:
                     webDriver = new InternetExplorerDriver();
                     break;
             }

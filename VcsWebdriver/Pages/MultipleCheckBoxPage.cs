@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
 namespace VcsWebdriver.Pages
 {
-    class MultipleCheckBoxPage : PageBase
+    public class MultipleCheckBoxPage : PageBase
     {
+        private const string PageAddress = "https://www.seleniumeasy.com/test/basic-checkbox-demo.html";
 
         // web elementai
         private IWebElement _singleCheckBox => Driver.FindElement(By.Id("isAgeSelected"));
@@ -26,8 +22,14 @@ namespace VcsWebdriver.Pages
 
         // konstruktorius
         public MultipleCheckBoxPage(IWebDriver webdriver) : base(webdriver)
+        { }
+
+        public MultipleCheckBoxPage OpenCheckBoxPage()
         {
-            Driver.Url = "https://www.seleniumeasy.com/test/basic-checkbox-demo.html";
+            if (Driver.Url != PageAddress)
+                Driver.Url = PageAddress;
+
+            return this;
         }
 
         // veiksmai - metodai

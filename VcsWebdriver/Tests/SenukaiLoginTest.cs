@@ -3,11 +3,10 @@ using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using VcsWebdriver.Drivers;
 using VcsWebdriver.Pages;
-using ScreenCapture = VcsWebdriver.Drivers.ScreenCapture;
 
 namespace VcsWebdriver.Tests
 {
-    public class SenukaiLoginTest
+    public class SenukaiLoginTest 
     {
         private static IWebDriver _driver;
         private static SenukaiLoginPage _senukaiLoginPage;
@@ -32,9 +31,6 @@ namespace VcsWebdriver.Tests
         [OneTimeTearDown]
         public static void CloseBrowser()
         {
-            if (TestContext.CurrentContext.Result.Outcome.Status != TestStatus.Passed)
-                ScreenCapture.Shot(_driver);
-
             _senukaiLoginPage.CloseBrowser();
         }
     }

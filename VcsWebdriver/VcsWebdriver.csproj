@@ -55,8 +55,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Drivers\Browser.cs" />
     <Compile Include="Drivers\CustomDrivers.cs" />
-    <Compile Include="Drivers\ScreenCapture.cs" />
     <Compile Include="Pages\SelectDemoPage.cs" />
     <Compile Include="Pages\MultipleCheckBoxPage.cs" />
     <Compile Include="Pages\PageBase.cs" />
@@ -67,12 +67,14 @@
     <Compile Include="Tests\SelectDemoTests.cs" />
     <Compile Include="Tests\MultipleCheckBoxTests.cs" />
     <Compile Include="Tests\SenukaiLoginTest.cs" />
+    <Compile Include="Tests\TestBase.cs" />
     <Compile Include="Tests\Vartutechnika.cs" />
     <Compile Include="Tests\BasicTestForm.cs" />
     <Compile Include="Tests\TestsDemo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\VartuTechnikaPageObject.cs" />
     <Compile Include="Tests\WebDriverDemo.cs" />
+    <Compile Include="Tools\MyScreenshot.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

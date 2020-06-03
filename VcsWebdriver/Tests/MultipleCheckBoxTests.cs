@@ -1,26 +1,14 @@
-﻿using System;
-using NUnit.Framework;
-using OpenQA.Selenium.Chrome;
-using VcsWebdriver.Drivers;
-using VcsWebdriver.Pages;
+﻿using NUnit.Framework;
 
 namespace VcsWebdriver.Tests
 {
-    class MultipleCheckBoxTests
+    public class MultipleCheckBoxTests : TestBase
     {
-        private static MultipleCheckBoxPage _page;
-
-        [OneTimeSetUp]
-        public static void SetUpChrome()
-        {
-            var driver = CustomDrivers.GetChromeDriver();
-            _page = new MultipleCheckBoxPage(driver);
-        }
-
         [Test]
         public static void SingleCheckBoxTest()
         {
-            _page
+            _multipleCheckBoxes
+                .OpenCheckBoxPage()
                 .CheckSingleCheckBox()
                 .AssertSingleCheckBoxDemoSuccessMessage()
                 .UnCheckSingleCheckBox();
@@ -29,22 +17,20 @@ namespace VcsWebdriver.Tests
         [Test]
         public static void MultipleCheckBoxTest()
         {
-            _page.CheckAllMultipleCheckBoxes().AssertButtonName("Uncheck All");
+            _multipleCheckBoxes
+                .OpenCheckBoxPage()
+                .CheckAllMultipleCheckBoxes()
+                .AssertButtonName("Uncheck All");
         }
 
         [Test]
         public static void UncheckMultipleCheckBoxesTest()
         {
-            _page
+            _multipleCheckBoxes
+                .OpenCheckBoxPage()
                 .CheckAllMultipleCheckBoxes()
                 .ClickGroupButton()
                 .AssertMultipleCheckBoxesUnchecked();
-        }
-
-        [OneTimeTearDown]
-        public static void CloseBrowser()
-        {
-            _page.CloseBrowser();
         }
     }
 }

@@ -7,7 +7,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace VcsWebdriver.Pages
 {
-    class SelectDemoPage : PageBase
+    public class SelectDemoPage : PageBase
     {
         // elementai
         private static SelectElement DaySelectList => new SelectElement(Driver.FindElement(By.Id("select-demo")));
@@ -20,7 +20,13 @@ namespace VcsWebdriver.Pages
         // konstruktorius
         public SelectDemoPage(IWebDriver webdriver) : base(webdriver)
         {
+            
+        }
+
+        public SelectDemoPage GoToSelectDemoPage()
+        {
             Driver.Url = "https://www.seleniumeasy.com/test/basic-select-dropdown-demo.html";
+            return this;
         }
 
         // metodai- veiksmai
@@ -41,15 +47,28 @@ namespace VcsWebdriver.Pages
 
         public SelectDemoPage PasirinkReiksmesIsDidelioLauko(List<string> elementuValuesKuriuosPasirinksime)
         {
-            var actions = new Actions(Driver).KeyDown(Keys.LeftControl);
+            // inicializuojame actions
+            Actions actions = new Actions(Driver);
+
+            // nuspausti Ctrl Mygtuka 
+            actions.KeyDown(Keys.LeftControl);
 
             foreach (var option in MiestuPasirinkimoSarasas.Options)
                 if (elementuValuesKuriuosPasirinksime.Contains(option.GetAttribute("value")))
+                {
+                    // nurodem kokius optionus clickint
                     actions.Click(option);
+                }
+                   
+            // atleidziam mygtuka
+            actions.KeyUp(Keys.LeftControl);
 
-            actions.KeyUp(Keys.LeftControl).Build().Perform();
+            // vykdome veiksmus
+            actions.Build().Perform();
+
             return this;
         }
+
 
         public SelectDemoPage PaspauskGetAllSelected()
         {
@@ -57,21 +76,38 @@ namespace VcsWebdriver.Pages
             return this;
         }
 
-        public SelectDemoPage TikrinkPasirinktasReiksmes(List<string> elementuValuesKuriuosPasirinksime)
+        public SelectDemoPage CheckListedCities(List<string> elementuValuesKuriuosPasirinksime)
         {
-            string message = RezultatoZinute.Text;
-            Assert.IsTrue(message.StartsWith("Options selected are : "), "Expected message to start with 'Options selected are : '");
-            foreach (var reiksme in elementuValuesKuriuosPasirinksime)
-                Assert.IsTrue(message.Contains(reiksme), $"Expected '{message}' to contain '{reiksme}'");
+            // priskiriame zinute kintamajam
+            string rezultatas = RezultatoZinute.Text;
+
+            foreach (var pasirinktasMiestas in elementuValuesKuriuosPasirinksime)
+            {
+                Assert.True(rezultatas.Contains(pasirinktasMiestas),
+                    $"{pasirinktasMiestas} nera tarp pasirinktu. Pasirinkti miestai: {rezultatas}");
+            }
 
             return this;
         }
 
-        public SelectDemoPage TikrinkPasirinktaReiksme(string reiksme)
+        public SelectDemoPage CheckListedCities()
         {
-            string message = RezultatoZinute.Text;
-            Assert.AreEqual($"Options selected are : {reiksme}", message, "Uzrasas nesutampa");
+            var builded = new Actions(Driver);
+            builded.SendKeys(Keys.PageDown);
+            builded.Build().Perform();
+
+            // priskiriame zinute kintamajam
+            string rezultatas = RezultatoZinute.Text;
+
+            IList<IWebElement> pasirinktiElementai = MiestuPasirinkimoSarasas.AllSelectedOptions;
+            foreach (IWebElement pasirinktasMiestas in pasirinktiElementai)
+            {
+                Assert.True(rezultatas.Contains(pasirinktasMiestas.Text),
+                    $"{pasirinktasMiestas} nera tarp pasirinktu");
+            }
+
             return this;
         }
+
     }
 }

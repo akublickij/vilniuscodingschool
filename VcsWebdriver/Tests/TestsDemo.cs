@@ -13,9 +13,11 @@ namespace VcsWebdriver.Tests
         [Test]
         public static void Tests()
         {
-            var b = Path.GetDirectoryName(
-                Path.GetDirectoryName((Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))));
-            var c = Path.Combine(Assembly.GetExecutingAssembly().Location, @"\\..\\");
+            //var b = Path.GetDirectoryName(
+            //    Path.GetDirectoryName((Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location))));
+
+            var assemblyName = Assembly.GetExecutingAssembly().Location;
+            var directoryName = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(assemblyName)));
 
         }
 
