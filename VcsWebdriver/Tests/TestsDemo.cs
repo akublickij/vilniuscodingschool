@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -8,6 +10,12 @@ namespace VcsWebdriver.Tests
 {
     public class TestsDemo
     {
+        [Test]
+        public static void Tests()
+        {
+            var b = Path.GetDirectoryName((Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)));
+            var a = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        }
 
         [Test]
         public static void TestExample()    

@@ -12,10 +12,12 @@ namespace VcsWebdriver.Pages
 
         private IWebElement _acceptSelectedCookiesButton => Driver.FindElement(By.CssSelector(".c-button-inverse"));
 
-        public SenukaiLoginPage(IWebDriver webdriver) : base(webdriver)
+        public SenukaiLoginPage(IWebDriver webdriver) : base(webdriver) { }
+
+        public SenukaiLoginPage GoToLoginPage()
         {
             Driver.Url = "https://www.senukai.lt/users/sign_in";
-            
+            return this;
         }
 
         public SenukaiLoginPage AcceptSelectedCookies()

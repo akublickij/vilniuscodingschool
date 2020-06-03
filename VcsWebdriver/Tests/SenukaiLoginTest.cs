@@ -1,6 +1,4 @@
-﻿using System;
-using NUnit.Framework;
-using OpenQA.Selenium.Chrome;
+﻿using NUnit.Framework;
 using VcsWebdriver.Drivers;
 using VcsWebdriver.Pages;
 
@@ -22,6 +20,7 @@ namespace VcsWebdriver.Tests
         public static void TestFirstCheckBoxExactWait()
         {
             _senukaiLoginPage
+                .GoToLoginPage()
                 .AcceptSelectedCookies()
                 .PerformLogin("user", "pwd");
         }
