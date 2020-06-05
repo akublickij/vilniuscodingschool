@@ -11,15 +11,22 @@ namespace VcsWebdriver.Tests
     {
         public static IWebDriver _driver;
         public static MultipleCheckBoxPage _multipleCheckBoxes;
+        public static SenukaiLoginPage _senukaiLoginPage;
         public static SelectDemoPage _demoPage;
+        public static AlertPage _alertPage;
+        public static ModalPage _modalPage;
+
 
         [OneTimeSetUp]
         public static void SetUpChrome()
         {
-            _driver = CustomDrivers.GetChromeDriver();
+            _driver = CustomDrivers.GetChromeWithOptions();
 
             _multipleCheckBoxes = new MultipleCheckBoxPage(_driver);
             _demoPage = new SelectDemoPage(_driver);
+            _senukaiLoginPage = new SenukaiLoginPage(_driver);
+            _alertPage = new AlertPage(_driver);
+            _modalPage = new ModalPage(_driver);
         }
 
         // vykdomas kaskart po kiekvieno testo

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
@@ -47,26 +48,23 @@ namespace VcsWebdriver.Pages
 
         public SelectDemoPage PasirinkReiksmesIsDidelioLauko(List<string> elementuValuesKuriuosPasirinksime)
         {
-            // inicializuojame actions
-            Actions actions = new Actions(Driver);
-
-            // nuspausti Ctrl Mygtuka 
-            actions.KeyDown(Keys.LeftControl);
-
             foreach (var option in MiestuPasirinkimoSarasas.Options)
                 if (elementuValuesKuriuosPasirinksime.Contains(option.GetAttribute("value")))
                 {
-                    // nurodem kokius optionus clickint
-                    actions.Click(option);
+                    ClickMultipleBox(option);
                 }
-                   
-            // atleidziam mygtuka
-            actions.KeyUp(Keys.LeftControl);
 
-            // vykdome veiksmus
-            actions.Build().Perform();
 
             return this;
+        }
+
+        public void ClickMultipleBox(IWebElement element)
+        {
+            Actions actions = new Actions(Driver);
+            actions.KeyDown(Keys.Control);
+            actions.Click(element);
+            actions.KeyUp(Keys.Control);
+            actions.Build().Perform();
         }
 
 

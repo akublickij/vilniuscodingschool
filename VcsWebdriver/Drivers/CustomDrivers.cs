@@ -13,9 +13,24 @@ namespace VcsWebdriver.Drivers
             return GetDriver(Browser.Chrome);
         }
 
+        public static IWebDriver GetChromeIncognitoDriver()
+        {
+            return GetDriver(Browser.ChromeIncognito);
+        }
+
         public static IWebDriver GetFireFoxDriver()
         {
             return GetDriver(Browser.FireFox);
+        }
+
+        public static IWebDriver GetChromeWithOptions()
+        {
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("start-maximized");
+            options.AddArgument("incognito");
+
+
+            return new ChromeDriver(options);
         }
 
         private static IWebDriver GetDriver(Browser browserName)
@@ -28,17 +43,30 @@ namespace VcsWebdriver.Drivers
                     webDriver = new FirefoxDriver();
                     break;
                 case Browser.Chrome:
-                    webDriver = new ChromeDriver();
+                    webDriver = GetChromeWithOptions();
+                    break;
+                case Browser.ChromeIncognito:
+                    webDriver = GetCustomChrome();
                     break;
                 case Browser.Explorer:
                     webDriver = new InternetExplorerDriver();
                     break;
             }
 
-            webDriver.Manage().Window.Maximize();
             webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
             return webDriver;
+        }
+
+        private static ChromeDriver GetCustomChrome( )
+        {
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("--start-maximized");
+            chromeOptions.AddArgument("--incognito");
+            
+            var chrome = new ChromeDriver(chromeOptions);
+            
+            return chrome;
         }
     }
 }

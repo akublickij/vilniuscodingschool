@@ -4,6 +4,7 @@
     {
         FireFox,
         Chrome,
+        ChromeIncognito,
         Explorer
     }
 }

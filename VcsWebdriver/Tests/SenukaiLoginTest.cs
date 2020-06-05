@@ -1,37 +1,28 @@
 ﻿using NUnit.Framework;
-using NUnit.Framework.Interfaces;
-using OpenQA.Selenium;
-using VcsWebdriver.Drivers;
-using VcsWebdriver.Pages;
 
 namespace VcsWebdriver.Tests
 {
-    public class SenukaiLoginTest 
+    public class SenukaiLoginTest : TestBase
     {
-        private static IWebDriver _driver;
-        private static SenukaiLoginPage _senukaiLoginPage;
-
-        [OneTimeSetUp]
-        public static void SetUpChrome()
-        {
-            _driver = CustomDrivers.GetChromeDriver();
-
-            _senukaiLoginPage = new SenukaiLoginPage(_driver);
-        }
-
         [Test]
-        public static void TestFirstCheckBoxExactWait()
+        public static void AcceptCookies()
         {
             _senukaiLoginPage
                 .GoToLoginPage()
-                .AcceptSelectedCookies()
-                .PerformLogin("user", "pwd");
+                .AddAdvertisingConsentCookies();
         }
 
-        [OneTimeTearDown]
-        public static void CloseBrowser()
+        [Test]
+        public static void TestBasicLogin()
         {
-            _senukaiLoginPage.CloseBrowser();
+            _senukaiLoginPage
+                .GoToLoginPage()
+                .AddAdvertisingConsentCookies()
+                //.AcceptSelectedCookies()
+                .PerformLogin("vcs_autotest@yahoo.com", "password")
+                .AssertLoggedIn()
+                .ClearAllCookies()
+                .AssertLoggedOut();
         }
     }
 }

@@ -57,15 +57,19 @@
   <ItemGroup>
     <Compile Include="Drivers\Browser.cs" />
     <Compile Include="Drivers\CustomDrivers.cs" />
+    <Compile Include="Pages\ModalPage.cs" />
+    <Compile Include="Pages\AlertPage.cs" />
     <Compile Include="Pages\SelectDemoPage.cs" />
     <Compile Include="Pages\MultipleCheckBoxPage.cs" />
     <Compile Include="Pages\PageBase.cs" />
     <Compile Include="Pages\SenukaiLoginPage.cs" />
+    <Compile Include="Tests\ModalPageTest.cs" />
     <Compile Include="Tests\BasicCheckBoxDemo.cs" />
     <Compile Include="Pages\BasicFirstFormDemoPage.cs" />
     <Compile Include="Pages\VartuTechnikaPage.cs" />
     <Compile Include="Tests\SelectDemoTests.cs" />
     <Compile Include="Tests\MultipleCheckBoxTests.cs" />
+    <Compile Include="Tests\AlertsPageTests.cs" />
     <Compile Include="Tests\SenukaiLoginTest.cs" />
     <Compile Include="Tests\TestBase.cs" />
     <Compile Include="Tests\Vartutechnika.cs" />
