@@ -23,5 +23,19 @@ namespace VcsWebdriver.Pages
             WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(seconds));
             return wait;
         }
+
+        public DefaultWait<IWebDriver> GetFluentWait()
+        {
+            DefaultWait<IWebDriver> fluentWait = new DefaultWait<IWebDriver>(Driver);
+
+            fluentWait.Timeout = TimeSpan.FromSeconds(5);
+            fluentWait.PollingInterval = TimeSpan.FromMilliseconds(250);
+
+            fluentWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            fluentWait.Message = "Element to be searched not found";
+
+            return fluentWait;
+        }
+
     }
 }

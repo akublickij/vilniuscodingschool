@@ -57,12 +57,16 @@
   <ItemGroup>
     <Compile Include="Drivers\Browser.cs" />
     <Compile Include="Drivers\CustomDrivers.cs" />
+    <Compile Include="Pages\AutopliusResultsPage.cs" />
+    <Compile Include="Pages\AutopliusSearchPage.cs" />
+    <Compile Include="Pages\Enums\Markes.cs" />
     <Compile Include="Pages\ModalPage.cs" />
     <Compile Include="Pages\AlertPage.cs" />
     <Compile Include="Pages\SelectDemoPage.cs" />
     <Compile Include="Pages\MultipleCheckBoxPage.cs" />
     <Compile Include="Pages\PageBase.cs" />
     <Compile Include="Pages\SenukaiLoginPage.cs" />
+    <Compile Include="Tests\AutopliusSearchTests.cs" />
     <Compile Include="Tests\ModalPageTest.cs" />
     <Compile Include="Tests\BasicCheckBoxDemo.cs" />
     <Compile Include="Pages\BasicFirstFormDemoPage.cs" />

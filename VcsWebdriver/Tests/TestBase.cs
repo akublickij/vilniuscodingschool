@@ -15,7 +15,7 @@ namespace VcsWebdriver.Tests
         public static SelectDemoPage _demoPage;
         public static AlertPage _alertPage;
         public static ModalPage _modalPage;
-
+        public static AutopliusSearchPage _autoPliusSearchPage;
 
         [OneTimeSetUp]
         public static void SetUpChrome()
@@ -27,6 +27,7 @@ namespace VcsWebdriver.Tests
             _senukaiLoginPage = new SenukaiLoginPage(_driver);
             _alertPage = new AlertPage(_driver);
             _modalPage = new ModalPage(_driver);
+            _autoPliusSearchPage = new AutopliusSearchPage(_driver);
         }
 
         // vykdomas kaskart po kiekvieno testo
